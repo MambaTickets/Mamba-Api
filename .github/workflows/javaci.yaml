@@ -12,15 +12,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Java JDK
-        uses: actions/setup-java@v1.3.0
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
         with:
-          java-version: '8'
-          java-package: jdk
-          architecture: x64
+          java-version: 8
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -f pom.xml clean verify
 
   release:
     if: ${{ github.ref == 'master'}}
