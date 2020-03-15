@@ -5,11 +5,9 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import controller.SignUpController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import service.SignUpService;
 
 import java.io.FileInputStream;
 
@@ -36,12 +34,6 @@ public class MambaTicketApiApplication {
 		// Retrieve services by passing the defaultApp variable...
 		FirebaseAuth defaultAuth = FirebaseAuth.getInstance(defaultApp);
 		FirebaseDatabase defaultDatabase = FirebaseDatabase.getInstance(defaultApp);
-
-		// Services
-		SignUpService signUpService = new SignUpService();
-
-		// Controllers
-		SignUpController signUpController = new SignUpController(signUpService);
 
 		SpringApplication.run(MambaTicketApiApplication.class, args);
 	}
