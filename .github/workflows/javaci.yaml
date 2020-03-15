@@ -21,3 +21,20 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+
+  release:
+    if: ${{ github.ref == 'master'}}
+    needs: build
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+

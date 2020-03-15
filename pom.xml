@@ -16,6 +16,10 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<sonar.projectKey>MambaTickets_Mamba-Api</sonar.projectKey>
+		<sonar.organization>mambatickets</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>430e17027df04a735f1dec0fba21e8370746a631</sonar.login>
 	</properties>
 
 	<dependencies>
@@ -70,6 +74,18 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>cobertura-maven-plugin</artifactId>
+			<version>2.7</version>
+			<configuration>
+				<formats>
+					<format>html</format>
+					<format>xml</format>
+				</formats>
+				<check />
+			</configuration>
+		</plugin>
 	</build>
 
 </project>
