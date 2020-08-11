@@ -18,7 +18,7 @@ public class MambaTicketApiApplication {
 	public static void main(String[] args) throws java.io.IOException {
 
 		java.io.FileInputStream serviceAccount =
-			new FileInputStream("mamba-tickets-firebase-adminsdk-16dde-de85233ff7.json");
+			new FileInputStream("mamba-tickets-firebase-adminsdk.json");
 
 		FirebaseOptions options = new FirebaseOptions.Builder()
 			.setCredentials(GoogleCredentials.fromStream(serviceAccount))

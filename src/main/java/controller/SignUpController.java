@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import request.SignUpRequest;
 import response.SignUpResponse;
 import service.SignUpService;
-
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
@@ -29,6 +29,27 @@ public class SignUpController {
     @PostMapping(path = "/register")
     @ResponseBody
     public SignUpResponse create(@RequestBody SignUpRequest request) {
+        try {
+            if (request.getEmail() == null ||
+                    !request.getEmail().contains("@") ||
+                    !request.getEmail().contains(".com"))
+                return null;
+            if (request.getPassword() == null ||
+                    request.getConfirmPassword() == null ||
+                    !request.getPassword().equals(request.getConfirmPassword()) ||
+                    request.getPassword().length() != 8 ||
+                    request.getConfirmPassword().length() != 8)
+                return null;
+
+            boolean response = this.service.Register(request);
+            if (!response)
+                return null;
+
+            return new SignUpResponse();
+
+        } catch (Exception ex) {
+            logger.log(Level.WARNING, ex.getMessage());
+        }
         return new SignUpResponse();
     }
 
